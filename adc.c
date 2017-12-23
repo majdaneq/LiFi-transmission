@@ -7,7 +7,7 @@ void ADC0_IRQHandler(void) {
 	slcdDisplay(adc_r0_value,10);
 	slcdSetDot(1);
 	TPM0->SC |= TPM_SC_CMOD(0);
-	TPM0->CONTROLS[2].CnV = (4095*adc_r0_value)/2800;
+	TPM0->CONTROLS[3].CnV = (4095*adc_r0_value)/2800;
 	TPM0->CONTROLS[5].CnV = (4095*adc_r0_value)/2800;	
 	TPM0->SC |= TPM_SC_CMOD(1);
 }
@@ -18,7 +18,7 @@ void begin_conversion(void) {
 	delay_mc(100);
 }
 void initialize_adc(void) {
-	uint32_t clpx_sum = 0;
+	uint32_t clpx_sum = 01;
 	uint32_t clmx_sum = 0;
 	SIM->SCGC6 |= SIM_SCGC6_ADC0_MASK;									//clock for ADC0
 	ADC0->CFG1 |= ADC_CFG1_ADICLK(0);										//select clock for ADC0 -> Bus Clock = 24 MHz
@@ -73,15 +73,15 @@ void initialize_tpm(void) {
 	SIM->SCGC6 |= SIM_SCGC6_TPM0_MASK;									//enable timer for TPM0;
 	SIM->SOPT2 |= (SIM_SOPT2_TPMSRC(1)									//MCGFLLCLK clock or MCGPLLCLK/2					
 							| SIM_SOPT2_PLLFLLSEL_MASK);						//MCGPLLCLK clock with fixed divide by two
-	PORTE->PCR[29] = PORT_PCR_MUX(3);
+	PORTD->PCR[3] = PORT_PCR_MUX(4);
 	PORTD->PCR[5] = PORT_PCR_MUX(4);
-	TPM0->SC |= TPM_SC_PS(7);												//prescaler for 128
+	TPM0->SC |= TPM_SC_PS(7);														//prescaler for 128
 	TPM0->SC &= ~TPM_SC_CPWMS_MASK;
 	TPM0->MOD = 4095;																		//12 bits
 		
-	TPM0->CONTROLS[2].CnSC &=  ~(TPM_CnSC_MSA_MASK 			//Edge Eligned PWM, High True Pulses
+	TPM0->CONTROLS[3].CnSC &=  ~(TPM_CnSC_MSA_MASK 			//Edge Eligned PWM, High True Pulses
 														| TPM_CnSC_ELSA_MASK);
-	TPM0->CONTROLS[2].CnSC |=  (TPM_CnSC_ELSB_MASK 
+	TPM0->CONTROLS[3].CnSC |=  (TPM_CnSC_ELSB_MASK 
 														| TPM_CnSC_MSB_MASK);	
 	TPM0->CONTROLS[5].CnSC &=  ~(TPM_CnSC_MSA_MASK 			//Edge Eligned PWM, Low True Pulses
 														| TPM_CnSC_ELSB_MASK);
