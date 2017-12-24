@@ -14,8 +14,10 @@ int main(void) {
 //	initialize_adc();
 //	initialize_tpm();
 	initialize_pin();
+	filltab();
 	for (;;) {		
 //		begin_conversion();
+		senddata();
 	}	
 }
 
