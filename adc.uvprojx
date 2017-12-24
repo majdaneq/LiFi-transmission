@@ -10,12 +10,13 @@
       <TargetName>CMSIS-DAP</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060300::V5.06 update 3 (build 300)::ARMCC</pCCUsed>
+      <pCCUsed>5060528::V5.06 update 5 (build 528)::ARMCC</pCCUsed>
+      <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>MKL46Z256xxx4</Device>
           <Vendor>NXP</Vendor>
-          <PackID>Keil.Kinetis_KLxx_DFP.1.12.0</PackID>
+          <PackID>Keil.Kinetis_KLxx_DFP.1.14.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x1FFFE000,0x00008000) IROM(0x00000000,0x00040000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -399,6 +400,16 @@
               <FileType>1</FileType>
               <FilePath>.\leds.c</FilePath>
             </File>
+            <File>
+              <FileName>transmitter.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\transmitter.c</FilePath>
+            </File>
+            <File>
+              <FileName>transmitter.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\transmitter.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -431,7 +442,7 @@
       <file attr="config" category="source" condition="Compiler ARMCC" name="Device\Source\ARM\startup_MKL46Z4.s" version="1.0.0">
         <instance index="0">RTE\Device\MKL46Z256xxx4\startup_MKL46Z4.s</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="MKL46Z4 CMSIS"/>
-        <package name="Kinetis_KLxx_DFP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="1.12.0"/>
+        <package name="Kinetis_KLxx_DFP" schemaVersion="1.4.9" url="http://www.keil.com/pack/" vendor="Keil" version="1.14.0"/>
         <targetInfos>
           <targetInfo name="CMSIS-DAP"/>
         </targetInfos>
@@ -439,7 +450,7 @@
       <file attr="config" category="source" name="Device\Source\system_MKL46Z4.c" version="1.0.0">
         <instance index="0">RTE\Device\MKL46Z256xxx4\system_MKL46Z4.c</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="MKL46Z4 CMSIS"/>
-        <package name="Kinetis_KLxx_DFP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="1.12.0"/>
+        <package name="Kinetis_KLxx_DFP" schemaVersion="1.4.9" url="http://www.keil.com/pack/" vendor="Keil" version="1.14.0"/>
         <targetInfos>
           <targetInfo name="CMSIS-DAP"/>
         </targetInfos>

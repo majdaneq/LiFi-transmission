@@ -8,7 +8,7 @@
   <Extensions>
     <cExt>*.c</cExt>
     <aExt>*.s*; *.src; *.a*</aExt>
-    <oExt>*.obj</oExt>
+    <oExt>*.obj; *.o</oExt>
     <lExt>*.lib</lExt>
     <tExt>*.txt; *.h; *.inc</tExt>
     <pExt>*.plm</pExt>
@@ -78,38 +78,6 @@
         <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
       <CpuCode>8</CpuCode>
-      <Books>
-        <Book>
-          <Number>0</Number>
-          <Title>Schematics (FRDM-KL43Z)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.12.0\Boards\NXP\FRDM-KL43Z\Documents\FRDM-KL43Z_SCH.pdf</Path>
-        </Book>
-        <Book>
-          <Number>1</Number>
-          <Title>User Manual (FRDM-KL43Z)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.12.0\Boards\NXP\FRDM-KL43Z\Documents\FRDMKL43ZUG.pdf</Path>
-        </Book>
-        <Book>
-          <Number>2</Number>
-          <Title>Schematics (TWR-KL43Z48M)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.12.0\Boards\NXP\TWR-KL43Z48M\Documents\TWR-KL43Z48M_SCH.pdf</Path>
-        </Book>
-        <Book>
-          <Number>3</Number>
-          <Title>TWR-KL43Z48M Quick Start Guide (TWR-KL43Z48M)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.12.0\Boards\NXP\TWR-KL43Z48M\Documents\TWRKL43Z48MQSG.pdf</Path>
-        </Book>
-        <Book>
-          <Number>4</Number>
-          <Title>User Manual (TWR-KL43Z48M)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.12.0\Boards\NXP\TWR-KL43Z48M\Documents\TWRKL43ZUG.pdf</Path>
-        </Book>
-        <Book>
-          <Number>5</Number>
-          <Title>TWR-KL43Z48M Web Page (TWR-KL43Z48M)</Title>
-          <Path>http://www.nxp.com/products/software-and-tools/hardware-development-tools/tower-development-boards/mcu-and-processor-modules/kinetis-modules/kinetis-kl43-kl33-kl27-kl17-48-mhz-mcus-tower-system-module:TWR-KL43Z48M</Path>
-        </Book>
-      </Books>
       <DebugOpt>
         <uSim>0</uSim>
         <uTrg>1</uTrg>
@@ -132,6 +100,7 @@
         <tRSysVw>1</tRSysVw>
         <sRunDeb>0</sRunDeb>
         <sLrtime>0</sLrtime>
+        <bEvRecOn>1</bEvRecOn>
         <nTsel>2</nTsel>
         <sDll></sDll>
         <sDllPa></sDllPa>
@@ -190,9 +159,16 @@
       <LintExecutable></LintExecutable>
       <LintConfigFile></LintConfigFile>
       <bLintAuto>0</bLintAuto>
-      <Lin2Executable></Lin2Executable>
-      <Lin2ConfigFile></Lin2ConfigFile>
-      <bLin2Auto>0</bLin2Auto>
+      <bAutoGenD>0</bAutoGenD>
+      <LntExFlags>0</LntExFlags>
+      <pMisraName></pMisraName>
+      <pszMrule></pszMrule>
+      <pSingCmds></pSingCmds>
+      <pMultCmds></pMultCmds>
+      <pMisraNamep></pMisraNamep>
+      <pszMrulep></pszMrulep>
+      <pSingCmdsp></pSingCmdsp>
+      <pMultCmdsp></pMultCmdsp>
     </TargetOption>
   </Target>
 
@@ -247,6 +223,30 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\leds.c</PathWithFileName>
       <FilenameWithoutPath>leds.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>5</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\transmitter.c</PathWithFileName>
+      <FilenameWithoutPath>transmitter.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>6</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\transmitter.h</PathWithFileName>
+      <FilenameWithoutPath>transmitter.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
