@@ -386,11 +386,6 @@
               <FilePath>.\main.c</FilePath>
             </File>
             <File>
-              <FileName>adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\adc.c</FilePath>
-            </File>
-            <File>
               <FileName>slcd.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\slcd.c</FilePath>

@@ -33,6 +33,6 @@ void senddata()
 		else 
 			PTD->PSOR |=transmask2;
 
-			delay_mc(200);
+			delay_mc(50);
 	}
 }
