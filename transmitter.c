@@ -14,19 +14,9 @@ int i=0;
 void initialize_pin(void) {
 	SIM->SCGC5 |= (SIM_SCGC5_PORTD_MASK);														
 	PORTD->PCR[3] = PORT_PCR_MUX(1UL);
-	PORTD->PCR[5] = PORT_PCR_MUX(1UL);
-	PORTD->PCR[1] = PORT_PCR_MUX(1UL);
-	PORTD->PCR[2] = PORT_PCR_MUX(1UL);
-	PORTD->PCR[4] = PORT_PCR_MUX(1UL);
-	PORTD->PCR[6] = PORT_PCR_MUX(1UL);
-	PORTD->PCR[7] = PORT_PCR_MUX(1UL);
-	PORTD->PCR[3] = PORT_PCR_MUX(1UL);
-	
+	PORTD->PCR[5] = PORT_PCR_MUX(1UL);	
 	PTD->PDDR |= transmask2;	
-	PTD->PSOR |= transmask2;
-
-		
-	
+	PTD->PSOR |= transmask2;	
 	PTD->PDDR |= MaskLED;
 	PTD->PSOR |=MaskLED;
 }
