@@ -1,5 +1,6 @@
 #include "transmitter.h"
 #include "slcd.h"
+#include "receiver.h"
 #include "leds.h"
 #include <time.h>
 #include <stdlib.h>
@@ -68,6 +69,7 @@ void senddata()
 			else 
 					PTD->PSOR |=transmask2;
 			delay_mc(100);
+			wynik_napiecie();
 		}	
 		PTD->PCOR|=MaskLED;
 	for(i=0;i<1000;i++)											//dane
@@ -78,6 +80,7 @@ void senddata()
 				PTD->PSOR |=transmask2;
 			
 			delay_mc(100);
+			wynik_napiecie();
 		}
 		ramkaclose();
 		PTD->PSOR|=MaskLED;
@@ -88,6 +91,7 @@ void senddata()
 			else 
 					PTD->PSOR |=transmask2;
 			delay_mc(100);
+			wynik_napiecie();
 		}
 	
 }

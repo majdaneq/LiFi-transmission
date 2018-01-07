@@ -8,22 +8,26 @@
 //Core Clock -> 48 MHz
 //Bus Clock ->24 MHz
 
-
+void SysTick_Handler(void) { 							/* TBD_4.1:  Put the name of SysTick handler */	
+	wynik_na_LCD();
+}
 int main(void) {	
 //	uint32_t c =0;
-//	slcdInitialize();	
-//	initialize_adc();
-//	initialize_tpm();
+	slcdInitialize();	
+	ADC_init();
+	
 	initialize_receiver();
 	initialize_pin();
 	filltab();
+	SystemCoreClockUpdate();
+	SysTick_Config(SystemCoreClock / 10000);
 
 	
 	for (;;) {		
 //		begin_conversion();
-		receive();
+	//	receive();
 		senddata();
-		
+	//	wynik_napiecie();
 	}	
 }
 
