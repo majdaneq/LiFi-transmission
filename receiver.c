@@ -27,19 +27,13 @@ void initialize_receiver(void) {
 int32_t pinRead(){
 	return FPTC->PDIR & receiver_mask;						/* Get port data input register (PDIR) */
 }
-void receive()
-{
-	if (pinRead()==0)
-	{PTE->PSOR = RedMask;  /* switch Red LED off */
-	}
-	else
-	{PTE->PCOR = RedMask;  /* switch Red LED on */
-	}	
-}
+
 uint32_t wynik_zmienna = 0, ilosc_probek = 1, dzielnik = 0, dzielnik2 = 0;
 float wynik2 = 0;
 uint32_t swiatlo = 0, temper = 0;
 uint16_t wynik3 = 0;
+
+
 
 void wynik_napiecie(void)
 {
@@ -107,9 +101,29 @@ void wynik_na_LCD(void)
 	if(dzielnik % 100 == 0)
 	{
 		slcdDisplay(wynik2, 10);
-			dzielnik = 0;
-	
-	
+			dzielnik = 0;	
 	}
+}
+
+
+void receive()
+{	wynik_napiecie();
+	wynik2*=10;
+	if (wynik2>125)
+	{
+		PTE->PSOR = RedMask;  /* switch Red LED off */	
+		slcdDisplay(wynik2, 10);
+	}
+	else 
+	{
+	PTE->PCOR = RedMask;  /* switch Red LED on */
+	}
+	
+//	if (pinRead()==0)
+//	{PTE->PSOR = RedMask;  /* switch Red LED off */
+//	}
+//	else
+//	{PTE->PCOR = RedMask;  /* switch Red LED on */
+//	}	
 }
 
