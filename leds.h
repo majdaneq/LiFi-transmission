@@ -18,7 +18,7 @@
 const static uint32_t led_mask[] = {1UL << 5, 1UL << 29};  //Green led is Port D bit 5, Red led is Port E bit 29
 
 void ledsInitialize(void);
-void ledgreenBlink(uint32_t x, uint32_t y);
+void ledsGreenOff(void);
 void ledredBlink(uint32_t x, uint32_t y);
 void ledsOff (void);
 void ledsOn (void);

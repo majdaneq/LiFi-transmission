@@ -9,7 +9,7 @@
 //Bus Clock ->24 MHz
 
 void SysTick_Handler(void) { 							/* TBD_4.1:  Put the name of SysTick handler */	
-	wynik_na_LCD(); 
+	wynik_na_LCD();
 }
 int main(void) {	
 //	uint32_t c =0;
@@ -24,9 +24,9 @@ int main(void) {
 
 	
 	for (;;) {		
-
-	//	receive(); // odbiornik
-		senddata();
+//		begin_conversion();
+		receive();
+	//	senddata();
 	//	wynik_napiecie();
 	}	
 }

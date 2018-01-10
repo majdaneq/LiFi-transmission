@@ -7,7 +7,7 @@
 
 const uint32_t MaskLED = {1UL << 5};
 const static uint32_t transmask2 = {1UL << 3};
-int tab[1000];
+int data_tab[1000];
 int ramka_tab[20];
 int i=0;
 	
@@ -25,7 +25,7 @@ void initialize_pin(void) {
 void filltab()									//wypelnienie tablicy danych
 {	
 	for(i=0;i<1000;i++)
-	{tab[i]=rand()%2;		
+	{data_tab[i]=rand()%2;		
 	}	
 }
 
@@ -74,7 +74,7 @@ void senddata()
 		PTD->PCOR|=MaskLED;
 	for(i=0;i<1000;i++)											//dane
 		{	
-			if (tab[i]==0)
+			if (data_tab[i]==0)
 				PTD->PCOR |=transmask2;
 			else 
 				PTD->PSOR |=transmask2;

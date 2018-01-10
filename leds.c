@@ -25,16 +25,8 @@ void ledsInitialize(void){
 /*----------------------------------------------------------------------------
   Function that blinks (x) times green led with (y) delay in mc
  *----------------------------------------------------------------------------*/
-void ledgreenBlink(uint32_t x, uint32_t y){
-	uint32_t count;
-	
-	for(count = 0; count < x; count++){	
-		PTD->PCOR = led_mask[ledGreen];
-		delay_mc(y);		
-		PTD->PSOR = led_mask[ledGreen];
-		delay_mc(y);
-	}
-}
+
+
 /*----------------------------------------------------------------------------
   Function that blinks (x) times red led with (y) delay in mc
  *----------------------------------------------------------------------------*/
@@ -68,7 +60,9 @@ void ledsGreenOn(void) {
 void ledsRedOn(void) {
 	  PTE->PCOR = led_mask[ledRed];     	/* switch Green LED on */
 }
-
+void ledsGreenOff(void) {
+		PTD->PSOR = led_mask[ledGreen];      	/* switch Red LED on  */
+}
 /*----------------------------------------------------------------------------
   Delay function
  *----------------------------------------------------------------------------*/

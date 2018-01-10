@@ -5,15 +5,18 @@
 
 const static uint32_t receiver_mask = {1UL << 1};
 const static uint32_t RedMask = {1UL << 29};  //Green led is Port D bit 5, Red led is Port E bit 29
-	
+	const static uint32_t GreenMask = {1UL << 29};
 void initialize_receiver(void) {
 	SIM->SCGC5 |= (SIM_SCGC5_PORTC_MASK);		
 	SIM->SCGC5 |= (SIM_SCGC5_PORTE_MASK);	
+	SIM->SCGC5 |= SIM_SCGC5_PORTD_MASK;
 	
+	PORTD->PCR[5] = PORT_PCR_MUX(1UL); 
 	PORTC->PCR[1] = PORT_PCR_MUX(4);
 	PORTE->PCR[29] = PORT_PCR_MUX(1UL);  /* Pin PTE29 is GPIO */
 	
-	
+			FPTD->PCOR = GreenMask;  /* switch Red LED off */	
+		FPTD->PDDR = GreenMask;  /* enable PTE29 as Output */
 		FPTE->PCOR = RedMask;  /* switch Red LED off */	
 		FPTE->PDDR = RedMask;  /* enable PTE29 as Output */
 	
@@ -104,21 +107,110 @@ void wynik_na_LCD(void)
 			dzielnik = 0;	
 	}
 }
+uint16_t vref= 0;
+int check =0;
+uint16_t vprev=0;
+int tab[2000];
+int j=0;
+int k=0;
+int max;
+int min;
+double clktime=0;
+int clkset=0; 
+void compare()
+{
+	wynik2*=10;
+	//KOMPARACJA
+	if (vref==0) //nieustalone
+	{
+		tab[j]=wynik2;
+		j++;
+			if (j ==1999)
+			{	max =tab[0];
+				min =tab[0];
+			
+				for(k=0;k<2000; k++)
+				{
+					if (tab[k]<min) min = tab[k];
+					if (tab[k]>max) max =	tab[k];
+				}				
+				vref=(max+min)/2;
+					ledsGreenOn();//PTD->PSOR = GreenMask;  /* switch Red LED on */
+			//	ledgreenBlink();  /* switch Red LED off */
+									
+			}
+			k=0;
+	}
 
 
+}
+
+void clkrestore()
+{
+	if (clkset==0)
+	{
+	do 
+	{
+	clktime+=0.0208; //usek
+	k++;
+	}
+	while (tab[k]>vref);
+	clkset=1;	
+	//clktime*=0.001;
+	}	
+	k=0;
+	
+}
+
+
+int data_tabrec[2000];
+int it =0;
+int ramkaopenrec=0;
+int jedn=0;
+	int dzies=0;
+	int setki=0;
+	int tys=0;
 void receive()
 {	wynik_napiecie();
-	wynik2*=10;
-	if (wynik2>125)
+
+	compare();
+	clkrestore();	
+//	ledredBlink(1000,clktime*1000);
+	//odbior na led
+	if (wynik2>vref)
 	{
 		PTE->PSOR = RedMask;  /* switch Red LED off */	
-		slcdDisplay(wynik2, 10);
+		data_tabrec[it]=1;		
 	}
 	else 
 	{
 	PTE->PCOR = RedMask;  /* switch Red LED on */
+	data_tabrec[it]=0;
 	}
+	delay_mc(clktime/2);
 	
+/*	if (it>3)
+	{
+		do
+		{
+			jedn = data_tabrec[it-3];
+			dzies = data_tabrec[it-2] * 10;
+			setki = data_tabrec[it-1]*100;
+			tys=	data_tabrec[it]*1000;				
+			ramkaopenrec =jedn+dzies+setki+tys;		
+			
+		}
+		while (ramkaopenrec==1010 || it <2000);
+	
+		
+		if (ramkaopenrec==1010 ||ramkaopenrec==0101)
+	{ledsGreenOff();
+	}
+	}
+*/	
+	it++;
+	if (it==1999)
+		it =0;
 //	if (pinRead()==0)
 //	{PTE->PSOR = RedMask;  /* switch Red LED off */
 //	}
@@ -126,4 +218,3 @@ void receive()
 //	{PTE->PCOR = RedMask;  /* switch Red LED on */
 //	}	
 }
-
