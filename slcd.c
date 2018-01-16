@@ -111,6 +111,33 @@ void slcdErr(uint8_t number){
 			LCD->WF8B[LCD_Front_Pin[6]] = (LCD_S_G | LCD_S_F);
 			LCD->WF8B[LCD_Front_Pin[7]] = (LCD_S_B | LCD_S_C);
 			break;
+		
+		case 0x33:  //DO PROJEKTU -0
+			LCD->WF8B[LCD_Front_Pin[6]] = (LCD_S_D | LCD_S_E | LCD_S_F); /* To display '0' we must active segments: d, e & f on first front plane */
+			LCD->WF8B[LCD_Front_Pin[7]] = (LCD_S_A | LCD_S_B | LCD_S_C); /* To display '0' we must active segments: a, b & c on second front plane */
+			break;
+		case 0x34:  //DO PROJEKTU -P
+			LCD->WF8B[LCD_Front_Pin[6]] = (LCD_S_E | LCD_S_F | LCD_S_G); /* To display '0' we must active segments: d, e & f on first front plane */
+			LCD->WF8B[LCD_Front_Pin[7]] = (LCD_S_A | LCD_S_B); /* To display '0' we must active segments: a, b & c on second front plane */
+			break;			
+		case 0x35:  //DO PROJEKTU -E
+			LCD->WF8B[LCD_Front_Pin[6]] = (LCD_S_E | LCD_S_F | LCD_S_G); /* To display '0' we must active segments: d, e & f on first front plane */
+			LCD->WF8B[LCD_Front_Pin[7]] = (LCD_S_A | LCD_S_D); /* To display '0' we must active segments: a, b & c on second front plane */
+			break;
+		case 0x36:  //DO PROJEKTU -A
+			LCD->WF8B[LCD_Front_Pin[6]] = (LCD_S_E | LCD_S_F | LCD_S_G); /* To display '0' we must active segments: d, e & f on first front plane */
+			LCD->WF8B[LCD_Front_Pin[7]] = (LCD_S_A | LCD_S_B | LCD_S_C); /* To display '0' we must active segments: a, b & c on second front plane */
+			break;
+		case 0x37:  //DO PROJEKTU -C
+			LCD->WF8B[LCD_Front_Pin[6]] = (LCD_S_E | LCD_S_F); /* To display '0' we must active segments: d, e & f on first front plane */
+			LCD->WF8B[LCD_Front_Pin[7]] = (LCD_S_A | LCD_S_D); /* To display '0' we must active segments: a, b & c on second front plane */
+			break;
+		case 0x38:  //DO PROJEKTU -L
+			LCD->WF8B[LCD_Front_Pin[6]] = (LCD_S_E | LCD_S_F); /* To display '0' we must active segments: d, e & f on first front plane */
+			LCD->WF8B[LCD_Front_Pin[7]] = (LCD_S_D); /* To display '0' we must active segments: a, b & c on second front plane */
+			break;
+		
+		
 		default:   //as default display 'r'
 			LCD->WF8B[LCD_Front_Pin[6]] = (LCD_S_E | LCD_S_G);
 			LCD->WF8B[LCD_Front_Pin[7]] = (LCD_C);
@@ -148,6 +175,34 @@ void slcdSetDot(uint8_t ktora) {
 void slcdSet(uint8_t value, uint8_t digit){	
 
 	switch(value){
+		//DO PROJEKTU
+		case 0x33:  //DO PROJEKTU -0
+			LCD->WF8B[LCD_Front_Pin[((2*digit)-2)]] = (LCD_S_D | LCD_S_E | LCD_S_F); /* To display '0' we must active segments: d, e & f on first front plane */
+			LCD->WF8B[LCD_Front_Pin[((2*digit)-1)]] = (LCD_S_A | LCD_S_B | LCD_S_C); /* To display '0' we must active segments: a, b & c on second front plane */
+			break;
+		case 0x34:  //DO PROJEKTU -P
+			LCD->WF8B[LCD_Front_Pin[((2*digit)-2)]] = (LCD_S_E | LCD_S_F | LCD_S_G); /* To display '0' we must active segments: d, e & f on first front plane */
+			LCD->WF8B[LCD_Front_Pin[((2*digit)-1)]] = (LCD_S_A | LCD_S_B); /* To display '0' we must active segments: a, b & c on second front plane */
+			break;			
+		case 0x35:  //DO PROJEKTU -E
+			LCD->WF8B[LCD_Front_Pin[((2*digit)-2)]] = (LCD_S_E | LCD_S_F | LCD_S_G); /* To display '0' we must active segments: d, e & f on first front plane */
+			LCD->WF8B[LCD_Front_Pin[((2*digit)-1)]] = (LCD_S_A | LCD_S_D); /* To display '0' we must active segments: a, b & c on second front plane */
+			break;
+		case 0x36:  //DO PROJEKTU -A
+			LCD->WF8B[LCD_Front_Pin[((2*digit)-2)]] = (LCD_S_E | LCD_S_F | LCD_S_G); /* To display '0' we must active segments: d, e & f on first front plane */
+			LCD->WF8B[LCD_Front_Pin[((2*digit)-1)]] = (LCD_S_A | LCD_S_B | LCD_S_C); /* To display '0' we must active segments: a, b & c on second front plane */
+			break;
+		case 0x37:  //DO PROJEKTU -C
+			LCD->WF8B[LCD_Front_Pin[((2*digit)-2)]] = (LCD_S_E | LCD_S_F); /* To display '0' we must active segments: d, e & f on first front plane */
+			LCD->WF8B[LCD_Front_Pin[((2*digit)-1)]] = (LCD_S_A | LCD_S_D); /* To display '0' we must active segments: a, b & c on second front plane */
+			break;
+		case 0x38:  //DO PROJEKTU -L
+			LCD->WF8B[LCD_Front_Pin[((2*digit)-2)]] = (LCD_S_E | LCD_S_F); /* To display '0' we must active segments: d, e & f on first front plane */
+			LCD->WF8B[LCD_Front_Pin[((2*digit)-1)]] = (LCD_S_D); /* To display '0' we must active segments: a, b & c on second front plane */
+			break;
+		
+		
+		
 		case 0x00:
 			LCD->WF8B[LCD_Front_Pin[((2*digit)-2)]] = (LCD_S_D | LCD_S_E | LCD_S_F); /* To display '0' we must active segments: d, e & f on first front plane */
 			LCD->WF8B[LCD_Front_Pin[((2*digit)-1)]] = (LCD_S_A | LCD_S_B | LCD_S_C); /* To display '0' we must active segments: a, b & c on second front plane */
@@ -213,6 +268,9 @@ void slcdSet(uint8_t value, uint8_t digit){
 			LCD->WF8B[LCD_Front_Pin[((2*digit)-1)]] = (LCD_S_A);
 			break;
 		case 0x10:
+			LCD->WF8B[LCD_Front_Pin[((2*digit)-2)]] = (LCD_S_F | LCD_S_E | LCD_S_G);
+			LCD->WF8B[LCD_Front_Pin[((2*digit)-1)]] = (LCD_S_A);
+		case 0x11:
 			LCD->WF8B[LCD_Front_Pin[((2*digit)-2)]] = (LCD_S_F | LCD_S_E | LCD_S_G);
 			LCD->WF8B[LCD_Front_Pin[((2*digit)-1)]] = (LCD_S_A);
 		default:   //as default display 'r'

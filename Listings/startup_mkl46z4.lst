@@ -566,13 +566,12 @@ ARM Macro Assembler    Page 9
               00000100 
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0+ --apcs=inter
-work --depend=.\objects\startup_mkl46z4.d -o.\objects\startup_mkl46z4.o -IC:\Us
-ers\student\Downloads\sxx\SMP_LiFi_Proj-master\SMP_LiFi_Proj-master\RTE -IC:\Ke
-il_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta12\CMSIS\Include -IC:\Keil_v5\ARM\PACK\Keil\
-Kinetis_KLxx_DFP\1.12.0\Device\Include --predefine="__EVAL SETA 1" --predefine=
-"__UVISION_VERSION SETA 521" --predefine="_RTE_ SETA 1" --predefine="MKL46Z256x
-xx4 SETA 1" --list=.\listings\startup_mkl46z4.lst RTE\Device\MKL46Z256xxx4\star
-tup_MKL46Z4.s
+work --depend=.\objects\startup_mkl46z4.d -o.\objects\startup_mkl46z4.o -I.\RTE
+\_CMSIS-DAP -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include -IC:\Keil_v5\AR
+M\PACK\Keil\Kinetis_KLxx_DFP\1.14.0\Device\Include --predefine="__EVAL SETA 1" 
+--predefine="__UVISION_VERSION SETA 524" --predefine="_RTE_ SETA 1" --predefine
+="MKL46Z256xxx4 SETA 1" --list=.\listings\startup_mkl46z4.lst RTE\Device\MKL46Z
+256xxx4\startup_MKL46Z4.s
 
 
 

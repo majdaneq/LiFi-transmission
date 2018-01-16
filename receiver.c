@@ -2,6 +2,7 @@
 #include "leds.h"
 #include <time.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 const static uint32_t receiver_mask = {1UL << 1};
 const static uint32_t RedMask = {1UL << 29};  //Green led is Port D bit 5, Red led is Port E bit 29
@@ -107,6 +108,7 @@ void wynik_na_LCD(void)
 			dzielnik = 0;	
 	}
 }
+
 uint16_t vref= 0;
 int check =0;
 uint16_t vprev=0;
@@ -117,6 +119,16 @@ int max;
 int min;
 double clktime=0;
 int clkset=0; 
+int data_tabrec[2000];
+int it =0;
+int ramkaopenrec=0;
+int jedn=0;
+int dzies=0;
+int setki=0;
+int tys=0;
+bool clkrestored=false;
+
+
 void compare()
 {
 	wynik2*=10;
@@ -163,21 +175,11 @@ void clkrestore()
 }
 
 
-int data_tabrec[2000];
-int it =0;
-int ramkaopenrec=0;
-int jedn=0;
-	int dzies=0;
-	int setki=0;
-	int tys=0;
-void receive()
-{	wynik_napiecie();
 
-	compare();
-	clkrestore();	
-//	ledredBlink(1000,clktime*1000);
-	//odbior na led
-	if (wynik2>vref)
+
+
+void openingframe()			// po ramce
+{		if (wynik2>vref)
 	{
 		PTE->PSOR = RedMask;  /* switch Red LED off */	
 		data_tabrec[it]=1;		
@@ -187,8 +189,57 @@ void receive()
 	PTE->PCOR = RedMask;  /* switch Red LED on */
 	data_tabrec[it]=0;
 	}
-	delay_mc(clktime/2);
+	delay_mc(clktime/2);	
+}
+
+void data()								//odbior danych, po ramce
+{		
+	for (int i=0;i++i<2000)
+	{		if (wynik2>vref)
+			{
+				PTE->PSOR = RedMask;  /* switch Red LED off */	
+				data_tabrec[it]=1;		
+			}
+			else 
+			{
+			PTE->PCOR = RedMask;  /* switch Red LED on */
+			data_tabrec[it]=0;
+			}
+	}
+}
+
+void closeframe()			// zakonczenie ramki
+{
+	for (int i=0;i++i<2000)
+	{		if (wynik2>vref)
+			{
+				PTE->PSOR = RedMask;  /* switch Red LED off */	
+				data_tabrec[it]=1;		
+			}
+			else 
+			{
+			PTE->PCOR = RedMask;  /* switch Red LED on */
+			data_tabrec[it]=0;
+			}
+	}
 	
+}
+
+
+void receive()
+{	wynik_napiecie(); //dziala
+	compare();				//dziala	
+	if (clkrestored==false)
+	{
+		clkrestore();						//moze zadziala ?
+		clkrestored=true;
+	}
+	
+	//clkrestore();			//dziala
+	//ledredBlink(1000,clktime*1000);
+	//odbior na led	
+	openingframe();
+	data();
 /*	if (it>3)
 	{
 		do
@@ -208,9 +259,9 @@ void receive()
 	}
 	}
 */	
-	it++;
-	if (it==1999)
-		it =0;
+	//it++;
+	//if (it==1999)
+	//	it =0;
 //	if (pinRead()==0)
 //	{PTE->PSOR = RedMask;  /* switch Red LED off */
 //	}
